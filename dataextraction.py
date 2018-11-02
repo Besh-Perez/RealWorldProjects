@@ -1,8 +1,16 @@
+#import libraries
+import openpyxl
+from tkinter import *
+from tkinter.tkk import Combobok
+
+root = Tk()
+root.fileName = filedialog.askopenfilename (filetypes = (("howCode files", "*.hc"), ("All files", "*.*")))
+
 # load workbook, files must be called 'Sales.xlsx' and 'campaign.xlsx' on the c drive
 sa = openpyxl.load_workbook("C:\\Sales.xlsx")
 md = openpyxl.load_workbook("C:\\Campaign.xlsx")
 
-store = ["Manchester", "liverpool", "Leeds", "Birmingham", "Glasgow", "london", "Stoke", "Newcastle", "York", "Cardiff"]
+store = ["Manchester", "Liverpool", "Leeds", "Birmingham", "Glasgow", "london", "Stoke", "Newcastle", "York", "Cardiff"]
 
 # creating object of the sheet i want to work on
 shs = sa[0]
@@ -10,9 +18,9 @@ shm = md[0]
 
 #find rows
 srows = shs.max_row
-scolumns = shs.max_row
+scolumns = shs.max_column
 mrows = shm.max_row
-mcolumns = shm.max_row
+mcolumns = shm.max_column
 
 #make a class to find specfic data
 class Store:
