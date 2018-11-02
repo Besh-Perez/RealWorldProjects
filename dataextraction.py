@@ -1,8 +1,8 @@
 import openpyxl
-
+sales = "E:\\Sales.xlsx", campaign = "E:\\Campaign.xlsx"
 # load workbook, files must be called 'Sales.xlsx' and 'campaign.xlsx' on the c drive
-sa = openpyxl.load_workbook("C:\\Sales.xlsx")
-md = openpyxl.load_workbook("C:\\Campaign.xlsx")
+sa = openpyxl.load_workbook(sales)
+md = openpyxl.load_workbook(campaign)
 
 store = ["Manchester", "Liverpool", "Leeds", "Birmingham", "Glasgow", "london", "Stoke", "Newcastle", "York", "Cardiff"]
 
@@ -51,10 +51,19 @@ def check(sx, my):
                                 col = s + "st"
                             else:
                                 col = s + "th"
-                                print(f"file {my} has an error on row {i}, column {col}") 
+                                print(f"file media has an error on row {i}, column {col}") 
                         elif week == 0:
-                            nonm += 
-            
+                            temp = sx[i][key - 12: key + 3]
+                            nonm.append(temp)
+                        else:
+                            if key1 < key:
+                                print("check correct weeks have been input on row {i} for media start and finish") 
+                            temp = sx[i][key - 12: key1 - key]
+                            med.append(temp)
+                            
+                        med.append(nonm)
+                return med #a list that sperates my data so the 0 index is media sales, then in that list it contains string for store, 
+            #and a list of atleast 15 lists containing 2 csv, 1 for week, 1 for sales 
     
 
 #function to create a list within a list to iterate though the week values easier
@@ -108,9 +117,6 @@ def titlemaker(sheet, col):
             cellnames += temp
     return cellnames
 
-#function to 
-
-
 #creating a variable to check if true or false
 mc = correct(titlemaker(mhm, mcolumns), campaignform)
 sc = correct(titlemaker(shm, scolumns), salesform)
@@ -125,6 +131,48 @@ else:
     uglystore = liststore(shs, srows, scolumns)
     uglymedia = liststore(shm, mrows, mcolumns)
 
+#preparing to read the data in a format im more comfortable with
+readable = check(uglystore, uglymedia)
 
+#preparing my sheets and naming them
+wk = openpyxl.Workbook()
+asheet = wk.active
+asheet.title = "Compiled Data"
 
+#naming extra sheets
+wk.create_sheet = (title = "Analysis", "Visulisation")
+asheet1 = "Anaylsis"
+asheet2 = "Visulisation"
+
+for r in readable[0]:
+    lsr = len(r)
+    wctr = 0
+    for weekr in range(1, lr):
+        lwr = len(weekr)
+        while lwr > ctr:
+            wctr = lwr
+        saler = readable[0][r][weekr][1::2]
+        sales = 
             
+ 
+
+
+
+lsize = len(size)
+        z = 0
+        if size is.alpha():
+            A = size
+        elif lsize > z:
+            z = lsize
+        else:
+            pass
+        
+        
+    for irow in range(2, lr + 2):
+        
+     
+    valpos = asheet.cell(i, j)
+    posv.value = valpos
+
+#saving file
+beta.save(f"C:\\{brand}anaylsis.xlsx")
