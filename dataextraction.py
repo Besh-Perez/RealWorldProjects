@@ -144,17 +144,52 @@ wk.create_sheet = (title = "Analysis", "Visulisation")
 asheet1 = "Anaylsis"
 asheet2 = "Visulisation"
 
-for r in readable[0]:
-    lsr = len(r)
-    wctr = 0
-    for weekr in range(1, lr):
-        lwr = len(weekr)
-        while lwr > ctr:
-            wctr = lwr
-        saler = readable[0][r][weekr][1::2]
-        sales = 
+#xyz & xyz1 = readable[0] or readable[1]
+def readSale(xyz):
+    abc = len(xyz)
+    for irsale in range(abc):
+        xrs = len(xyz[irsale])
+        for jrsale in range(1, xrs):
+            sale = xyz[i][j][1::2]
+            return sale
+def readXAxis(xyz1):
+    abc1 = len(xyz1)
+    for iraxis in range(abc):
+        xA = xyz1[iraxis][0]
+        return xA
+
+def readYAXIS(xyz2):
+    abc2 = len(abc2)
+    for irweek in range(abc2):
+        xrw = len(xyz[irweek])
+        for jrweek in range(1, xrw):
+            yA = xyz2[irweek][jrweek][::2]
+            return yA
+    
+def writeSale(yz, sheetyz):
+    zz = len(yz)
+    for w1i in range(1, zz + 1):
+        az = len(zz[w1i])
+        for w1j in range(1, az + 1):
+            sheetout = yz[w1i][w1j]
+            sheetyz.value[x]
+            return coords
+
+def writeAxis(axisxy, sheetx):
+    while str(axisxy):
+        lowerxy = axisxy.lower()
+        if lowerxy.startswith('w'):
+            for axisi in range(1, len(axisxy) + 1):
+                Axis = sheetx.cell(axisi + 1, 1 )
+        else:
+            for axisi in range(1, len(axisxy) + 1):
+                Axis = sheetx.cell(1, axisi + 1)
+        return Axis
             
- 
+        
+
+    
+
 
 
 
