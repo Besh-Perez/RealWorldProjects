@@ -1,8 +1,7 @@
 import openpyxl
 sales = "E:\\Sales.xlsx", campaign = "E:\\Campaign.xlsx"
 # load workbook, files must be called 'Sales.xlsx' and 'campaign.xlsx' on the c drive
-sa = openpyxl.load_workbook(sales)
-md = openpyxl.load_workbook(campaign)
+sa = openpyxl.load_workbook(sales), md = openpyxl.load_workbook(campaign)
 
 store = ["Manchester", "Liverpool", "Leeds", "Birmingham", "Glasgow", "london", "Stoke", "Newcastle", "York", "Cardiff"]
 
@@ -53,19 +52,16 @@ def check(sx, my):
                                 print("check correct weeks have been input on row {i} for media start and finish") 
                             temp = sx[i][key - 12: key1 - key]
                             med.append(temp)
-                            
                         med.append(nonm)
                 return med #a list that sperates my data so the 0 index is media sales, then in that list it contains string for store, 
             #and a list of atleast 15 lists containing 2 csv, 1 for week, 1 for sales 
-    
 
 #function to create a list within a list to iterate though the week values easier
 def liststore(sheets, rnum, calpha):
     v1 = list(), v2 = list(), v3 = list()
     for i in range(2, rnum + 1):
         for j in range(2, calpha + 1):
-            storename = sheets.ceel(i, 1)
-            v2 == [stroename, [value, sheets.cell(i, j + 1)]]
+            storename = sheets.ceel(i, 1), v2 == [stroename, [value, sheets.cell(i, j + 1)]]
             if sheets.cell(i, 1) == sheets.cell(i - 1, 1):
                 temp = "", value = sheet.cell(i, j)
                 if store == NULL:
@@ -131,48 +127,39 @@ def readYAXIS(xyz2):
     for iraxis in range(abc):
         xA = xyz1[iraxis][0]
         return xA  
-        
+
+# this function checks the axis entry if it is numeric we know that it belongs to the x-axis/columns or else it belongs in the y-axis
+# /rows. which means i would literally go down the rows if it was the y-axis, and accross the columns if the x-axis 
 def writeAxis(axisxy, sheetx):
-    while str(axisxy):
-        lowerxy = axisxy.lower()
-        if lowerxy.startswith('w'):
-            for axisi in range(1, len(axisxy) + 1):
-                Axis = sheetx.cell(axisi + 1, 1 )
-        else:
-            for axisi in range(1, len(axisxy) + 1):
-                Axis = sheetx.cell(1, axisi + 1)
-        return Axis
+    lowerxy = str(axisxy).lower()
+    if lowerxy.isnum():
+        for axisi in range(1, len(axisxy) + 1):
+            Axis = sheetx.cell(axisi + 1, 1 )
+    else:
+        for axisi in range(1, len(axisxy) + 1):
+            Axis = sheetx.cell(1, axisi + 1)
+    return Axis
     
-# 
+# so im going to call the value of either media(readable[0]) or non media(readable[1]) in the function readSale with the argument of 
+# the sheet im working on them im going to find the length of the lists in the data set(since it's excel we need 2 add 1 to each value
+# in the range, the first one as to not include the store name. then after the string name. each index should contain a list of size 2
+# therefore i must be consider the sytle of the data, which i intended to plot the prelaunch week
 def writeSale(yz, sheetyz):
     zz = len(yz)
     for w1i in range(1, zz + 1):
         az = len(zz[w1i])
         for w1j in range(1, az + 1):
-            coords = sheetyz.cell(w1i + keym, w1j + keym]
+            coords = sheetyz.cell(w1i, w1j)
             return coords
-        
-
-
-def writeAxis(axisxy, sheetx):
-    while str(axisxy):
-        lowerxy = axisxy.lower()
-        if lowerxy.startswith('w'):
-            for axisi in range(1, len(axisxy) + 1):
-                Axis = sheetx.cell(axisi + 1, 1 )
-        else:
-            for axisi in range(1, len(axisxy) + 1):
-                Axis = sheetx.cell(1, axisi + 1)
-        return Axis
 
 #creating a variable to check if true or false
 mc = correct(titlemaker(mhm, mcolumns), campaignform), sc = correct(titlemaker(shm, scolumns), salesform)
 
 if mc not True:
-    print(f"ERROR: file {md} doesn't appear to be formatted correctly")
+    print(f"ERROR: file {campaign} doesn't appear to be formatted correctly")
     break
 elif sc not True:
-    print(f"ERROR: file {md} doesn't appear to be formatted correctly")
+    print(f"ERROR: file {sales} doesn't appear to be formatted correctly")
     break
 else:
     uglystore = liststore(shs, srows, scolumns), uglymedia = liststore(shm, mrows, mcolumns)
@@ -185,16 +172,25 @@ wk = openpyxl.Workbook()
 asheet = wk.active
 asheet.title = "Media Performance"
 
-#naming extra sheets
-wk.create_sheet = (title = "Analysis", "Non-Media Performance", "Visulisation")
-asheet0 = "Non-Media Performance", asheet1 = "Analysis", asheet2 = "Visulisation"
-            
+#naming extra sheets in range of 3 because i am creating 3 new sheets.
+for sheetnum in range (3):
+    if shhetnum == 0:
+        sheetTitle = "Analysis", key = 1
+        sheet0 = sheetTitle
+    elif sheetnum == 1:
+        sheetTitle = "Non-Media Performance"
+        sheet1 = sheetTitle
+    else:
+        sheetTitle = "Visulisation"
+        sheet2 = sheetTitle
+    wk.create_sheet = (title = sheetTitle)
+    
 while writeSale(readSale(readable[0]), asheet):
     wtiretosh += Axis
 writetoshn = writeAxis(readYaxis(readable[0], asheet)
 writetosh += writetoshn
 writetoshw = writeAxis(readXAxis(readable[0], asheet)
 
-
+brandname = input("please enter the name of the product you intend to be using here : ")
 #saving file
 beta.save(f"C:\\{brand}anaylsis.xlsx")
