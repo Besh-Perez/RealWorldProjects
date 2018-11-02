@@ -1,18 +1,20 @@
+import openpyxl
+
 # load workbook, files must be called 'Sales.xlsx' and 'campaign.xlsx' on the c drive
 sa = openpyxl.load_workbook("C:\\Sales.xlsx")
 md = openpyxl.load_workbook("C:\\Campaign.xlsx")
 
-store = ["Manchester", "liverpool", "Leeds", "Birmingham", "Glasgow", "london", "Stoke", "Newcastle", "York", "Cardiff"]
+store = ["Manchester", "Liverpool", "Leeds", "Birmingham", "Glasgow", "london", "Stoke", "Newcastle", "York", "Cardiff"]
 
 # creating object of the sheet i want to work on
 shs = sa[0]
 shm = md[0]
 
-#find rows
+#find rows & coiumns
 srows = shs.max_row
-scolumns = shs.max_row
+scolumns = shs.max_column
 mrows = shm.max_row
-mcolumns = shm.max_row
+mcolumns = shm.max_column
 
 #make a class to find specfic data
 class Store:
@@ -25,12 +27,12 @@ campaignform = ["Store", "Start", "Finish"]
 salesform = ["Store", "Week", "Sales"]
 
 #function to create a list within a list to iterate though the week values easier
-def singlestore(sheets, num, alpha):
+def singlestore(sheets, rnum, calpha):
     temp = ""
     v1 = []
     v2 = []
-    for i in range(2, num + 1):
-        for j in range(2, alpha + 1):
+    for i in range(2, rnum + 1):
+        for j in range(2, calpha + 1):
             v1 += sheet.cell(i, 1)
             if sheets.cell(i, 1) == sheets.cell(i - 1, 1):
                 if sheets.cell(i, j) == NULL:
@@ -70,34 +72,9 @@ def titlemaker(sheet, col):
             cellnames += temp
     return cellnames
 
-#function to 
-
-
 #creating a variable to check if true or false
 mc = correct(titlemaker(mhm, mcolumns), campaignform)
 sc = correct(titlemaker(shm, scolumns), salesform)
 
 while mc & sc == True:
     
-
-
-
-        
-#using the function i defined earlier to check files are right.
-
-
-        
-#iterate through rows & columns
-#for mi in range(2, mrows + 1):
-#    for mj in range(1, mcolums + 1):
-#        mc = shm.cell(mi, mj)
-#        mst = []
-#        mcamp = []
-#        if mc.title() in stores:            
-
-#        elif mc == NULL:
-#            mc = 0
-#for si in range(1, srows + 1):
-#    for sj in range(1, scolums + 1):
-        
-        
