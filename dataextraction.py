@@ -26,30 +26,64 @@ class Store:
 campaignform = ["Store", "Start", "Finish"]
 salesform = ["Store", "Week", "Sales"]
 
+#funtion to check lists are compatible by first cheching the length on the list are the ame, 
+def check(sx, my):
+    a = len(sx)
+    b = len(my)
+    nonm = list()
+    med = list()
+    while a == b:
+        for i in range(a):
+            sn = sx[i][0].lower()
+            mn = my[i][0].lower()
+            while sn == mn:
+                c = len(sx[i])
+                for j in range(1, c):
+                    for k in range(2):
+                        week = my[i][j][k]
+                        if not week.isnum():
+                            s = str(J)
+                            if s[-1] == 3:
+                                col = s + "rd"
+                            elif s[-1] == 2:
+                                col = s + "nn"
+                            elif s[-1] == 1:
+                                col = s + "st"
+                            else:
+                                col = s + "th"
+                                print(f"file {my} has an error on row {i}, column {col}") 
+                        elif week == 0:
+                            nonm += 
+            
+    
+
 #function to create a list within a list to iterate though the week values easier
 def liststore(sheets, rnum, calpha):
-    temp = ""
     v1 = list()
     v2 = list()
     v3 = list()
     for i in range(2, rnum + 1):
         for j in range(2, calpha + 1):
-            v2 += sheet.cell(i, 1)
+            storename = sheets.ceel(i, 1)
+            v2 == [stroename, [value, sheets.cell(i, j + 1)]]
             if sheets.cell(i, 1) == sheets.cell(i - 1, 1):
-                store = sheet.cell(i, j)
+                temp = ""
+                value = sheet.cell(i, j)
                 if store == NULL:
                     temp = 0
                 elif store.isnum():
-                    temp = int(store)
+                    temp = int(value)
                 else:
-                    temp = store
+                    temp = value
                     print(f"{temp} is not a valid entry for media start or end date")
                     break
                 v1.append(temp)
             elif len(v1) == 2:
-                v2.pop(v1)
+                v2.append(v1)
+                v1 = list()
             else:
-                v3.pop(v2)
+                v3.append(v2)
+                v2 = list()
     return v3
                 
 
@@ -88,10 +122,9 @@ elif sc not True:
     print(f"ERROR: file {md} doesn't appear to be formatted correctly")
     break
 else:
-    uglydata = liststore(shs, srows, scolumns)
+    uglystore = liststore(shs, srows, scolumns)
+    uglymedia = liststore(shm, mrows, mcolumns)
 
-for l in uglydata:
-    lenglist = len(l)
-    for v in range(1, lenglist):
-        
+
+
             
