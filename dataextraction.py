@@ -2,10 +2,10 @@ import openpyxl
 
 #make a class to find specfic data
 class Store:
-    def __init__(self, store, sales, week):
+    def __init__(self, store, presales, gosales):
         self.store = store
-        self.sales = sales
-        self.week = week
+        self.presales = presales
+        self.gosales = gosales
 
 #funtion to check lists are compatible by first cheching the length on the list are the ame, 
 def check(sx, my, key, k1):
