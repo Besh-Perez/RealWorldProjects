@@ -106,31 +106,6 @@ def titlemaker(sheet, col):
         else:
             cellnames += temp
     return cellnames
-
-#creating a variable to check if true or false
-mc = correct(titlemaker(mhm, mcolumns), campaignform), sc = correct(titlemaker(shm, scolumns), salesform)
-
-if mc not True:
-    print(f"ERROR: file {md} doesn't appear to be formatted correctly")
-    break
-elif sc not True:
-    print(f"ERROR: file {md} doesn't appear to be formatted correctly")
-    break
-else:
-    uglystore = liststore(shs, srows, scolumns), uglymedia = liststore(shm, mrows, mcolumns)
-
-#preparing to read the data in a format im more comfortable with
-readable = check(uglystore, uglymedia)
-
-#preparing my sheets and naming them
-wk = openpyxl.Workbook()
-asheet = wk.active
-asheet.title = "Media Performance"
-
-#naming extra sheets
-wk.create_sheet = (title = "Analysis", "Non-Media Performance", "Visulisation")
-asheet0 = "Non-Media Performance", asheet1 = "Analysis", asheet2 = "Visulisation"
-
 #xyz & xyz1 = readable[0] or readable[1]
 def readSale(xyz):
     abc = len(xyz)
@@ -189,6 +164,30 @@ def writeAxis(axisxy, sheetx):
             for axisi in range(1, len(axisxy) + 1):
                 Axis = sheetx.cell(1, axisi + 1)
         return Axis
+
+#creating a variable to check if true or false
+mc = correct(titlemaker(mhm, mcolumns), campaignform), sc = correct(titlemaker(shm, scolumns), salesform)
+
+if mc not True:
+    print(f"ERROR: file {md} doesn't appear to be formatted correctly")
+    break
+elif sc not True:
+    print(f"ERROR: file {md} doesn't appear to be formatted correctly")
+    break
+else:
+    uglystore = liststore(shs, srows, scolumns), uglymedia = liststore(shm, mrows, mcolumns)
+
+#preparing to read the data in a format im more comfortable with
+readable = check(uglystore, uglymedia)
+
+#preparing my sheets and naming them
+wk = openpyxl.Workbook()
+asheet = wk.active
+asheet.title = "Media Performance"
+
+#naming extra sheets
+wk.create_sheet = (title = "Analysis", "Non-Media Performance", "Visulisation")
+asheet0 = "Non-Media Performance", asheet1 = "Analysis", asheet2 = "Visulisation"
             
 while writeSale(readSale(readable[0]), asheet):
     wtiretosh += Axis
