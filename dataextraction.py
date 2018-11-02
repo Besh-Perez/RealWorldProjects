@@ -178,7 +178,7 @@ elif sc not True:
     print(f"ERROR: file {sales} doesn't appear to be formatted correctly")
     break
 else:
-    readable = check(liststore(shs, srows, scolumns), uglymedia = liststore(shm, mrows, mcolumns))
+    readable = check(liststore(shs, srows, scolumns), liststore(shm, mrows, mcolumns))
     mediaside = 0, nonside = 1
 
 #preparing my sheets and naming them
