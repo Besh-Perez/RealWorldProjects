@@ -27,33 +27,35 @@ campaignform = ["Store", "Start", "Finish"]
 salesform = ["Store", "Week", "Sales"]
 
 #function to create a list within a list to iterate though the week values easier
-def singlestore(sheets, rnum, calpha):
+def liststore(sheets, rnum, calpha):
     temp = ""
-    v1 = []
-    v2 = []
+    v1 = list()
+    v2 = list()
+    v3 = list()
     for i in range(2, rnum + 1):
         for j in range(2, calpha + 1):
-            v1 += sheet.cell(i, 1)
+            v2 += sheet.cell(i, 1)
             if sheets.cell(i, 1) == sheets.cell(i - 1, 1):
-                if sheets.cell(i, j) == NULL:
+                store = sheet.cell(i, j)
+                if store == NULL:
                     temp = 0
-                elif sheets.cell(i, j).isnum():
-                    temp = int(sheets.cell(i, j))
+                elif store.isnum():
+                    temp = int(store)
                 else:
-                    temp = sheets.cell(i, j)
+                    temp = store
                     print(f"{temp} is not a valid entry for media start or end date")
                     break
                 v1.append(temp)
+            elif len(v1) == 2:
+                v2.pop(v1)
             else:
-                store = sheet.cell(i, j)
-                v2.append(v1)
-                v1 = []
-    return v2
+                v3.pop(v2)
+    return v3
                 
 
 #function to check if file titles are correct
 def correct(cellname, version):
-    name = [] 
+    name = list() 
     for i in cellname:
         name += i.title()    
     if name == version:
@@ -62,7 +64,7 @@ def correct(cellname, version):
         return False
 #function to automate what are in the title cells for each spreadsheet    
 def titlemaker(sheet, col):
-    cellnames = []
+    cellnames = list()
     for i in range(1, col + 1):
         temp = sheet.cell(1, i)
         if not temp.isalpha():
@@ -72,9 +74,24 @@ def titlemaker(sheet, col):
             cellnames += temp
     return cellnames
 
+#function to 
+
+
 #creating a variable to check if true or false
 mc = correct(titlemaker(mhm, mcolumns), campaignform)
 sc = correct(titlemaker(shm, scolumns), salesform)
 
-while mc & sc == True:
-    
+if mc not True:
+    print(f"ERROR: file {md} doesn't appear to be formatted correctly")
+    break
+elif sc not True:
+    print(f"ERROR: file {md} doesn't appear to be formatted correctly")
+    break
+else:
+    uglydata = liststore(shs, srows, scolumns)
+
+for l in uglydata:
+    lenglist = len(l)
+    for v in range(1, lenglist):
+        
+            
