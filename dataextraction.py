@@ -1,27 +1,11 @@
 import openpyxl
 
-#creating variables that contain string to the desired locations
-sales = "C:\\Sales.xlsx", campaign = "C:\\Campaign.xlsx"
-
-# load workbook, files must be called 'Sales.xlsx' and 'campaign.xlsx' on the c drive
-sa = openpyxl.load_workbook(sales), md = openpyxl.load_workbook(campaign)
-
-# creating object of the sheet i want to work on
-shs = sa[0], shm = md[0]
-
-#find rows & coiumns
-srows = shs.max_row, scolumns = shs.max_column
-mrows = shm.max_row, mcolumns = shm.max_column
-
 #make a class to find specfic data
 class Store:
     def __init__(self, store, sales, week):
         self.store = store
         self.sales = sales
         self.week = week
-
-campaignform = ["Store", "Start", "Finish"]
-salesform = ["Store", "Week", "Sales"]
 
 #funtion to check lists are compatible by first cheching the length on the list are the ame, 
 def check(sx, my):
@@ -155,6 +139,22 @@ def writeSale(yz, sheetyz):
 
 #creating a variable to check if true or false
 mc = correct(titlemaker(mhm, mcolumns), campaignform), sc = correct(titlemaker(shm, scolumns), salesform)
+
+#creating variables that contain string to the desired locations
+sales = "C:\\Sales.xlsx", campaign = "C:\\Campaign.xlsx"
+
+# load workbook, files must be called 'Sales.xlsx' and 'campaign.xlsx' on the c drive
+sa = openpyxl.load_workbook(sales), md = openpyxl.load_workbook(campaign)
+
+# creating object of the sheet i want to work on
+shs = sa[0], shm = md[0]
+
+#find rows & coiumns
+srows = shs.max_row, scolumns = shs.max_column
+mrows = shm.max_row, mcolumns = shm.max_column
+
+campaignform = ["Store", "Start", "Finish"]
+salesform = ["Store", "Week", "Sales"]
 
 if mc not True:
     print(f"ERROR: file {campaign} doesn't appear to be formatted correctly")
