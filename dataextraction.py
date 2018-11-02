@@ -1,9 +1,10 @@
 import openpyxl
-sales = "E:\\Sales.xlsx", campaign = "E:\\Campaign.xlsx"
+
+#creating variables that contain string to the desired locations
+sales = "C:\\Sales.xlsx", campaign = "C:\\Campaign.xlsx"
+
 # load workbook, files must be called 'Sales.xlsx' and 'campaign.xlsx' on the c drive
 sa = openpyxl.load_workbook(sales), md = openpyxl.load_workbook(campaign)
-
-store = ["Manchester", "Liverpool", "Leeds", "Birmingham", "Glasgow", "london", "Stoke", "Newcastle", "York", "Cardiff"]
 
 # creating object of the sheet i want to work on
 shs = sa[0], shm = md[0]
