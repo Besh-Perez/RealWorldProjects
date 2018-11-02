@@ -137,27 +137,26 @@ readable = check(uglystore, uglymedia)
 #preparing my sheets and naming them
 wk = openpyxl.Workbook()
 asheet = wk.active
-asheet.title = "Compiled Data"
+asheet.title = "Media Performance"
 
 #naming extra sheets
-wk.create_sheet = (title = "Analysis", "Visulisation")
-asheet1 = "Anaylsis"
+wk.create_sheet = (title = "Analysis", "Non-Media Performance", "Visulisation")
+asheet0 = "Non-Media Performance"
+asheet1 = "Analysis"
 asheet2 = "Visulisation"
 
 #xyz & xyz1 = readable[0] or readable[1]
 def readSale(xyz):
     abc = len(xyz)
     for irsale in range(abc):
-        xrs = len(xyz[irsale])
-        for jrsale in range(1, xrs):
-            sale = xyz[i][j][1::2]
-            return sale
-def readXAxis(xyz1):
-    abc1 = len(xyz1)
-    for iraxis in range(abc):
-        xA = xyz1[iraxis][0]
-        return xA
-
+        if xyz == readable[0]:
+            irsale += abc + 2
+        else:
+            xrs = len(xyz[irsale])
+            for jrsale in range(1, xrs):
+                sale = xyz[i][j][1::2]
+                return sale
+            
 def readYAXIS(xyz2):
     abc2 = len(abc2)
     for irweek in range(abc2):
@@ -165,15 +164,34 @@ def readYAXIS(xyz2):
         for jrweek in range(1, xrw):
             yA = xyz2[irweek][jrweek][::2]
             return yA
+        
+ def readXAxis(xyz1):
+    abc1 = len(xyz1)
+    for iraxis in range(abc):
+        xA = xyz1[iraxis][0]
+        return xA  
+        
+def writeAxis(axisxy, sheetx):
+    while str(axisxy):
+        lowerxy = axisxy.lower()
+        if lowerxy.startswith('w'):
+            for axisi in range(1, len(axisxy) + 1):
+                Axis = sheetx.cell(axisi + 1, 1 )
+        else:
+            for axisi in range(1, len(axisxy) + 1):
+                Axis = sheetx.cell(1, axisi + 1)
+        return Axis
     
+# 
 def writeSale(yz, sheetyz):
     zz = len(yz)
     for w1i in range(1, zz + 1):
         az = len(zz[w1i])
         for w1j in range(1, az + 1):
-            sheetout = yz[w1i][w1j]
-            sheetyz.value[x]
+            coords = sheetyz.cell(w1i + keym, w1j + keym]
             return coords
+        
+
 
 def writeAxis(axisxy, sheetx):
     while str(axisxy):
@@ -186,11 +204,11 @@ def writeAxis(axisxy, sheetx):
                 Axis = sheetx.cell(1, axisi + 1)
         return Axis
             
-        
-
-    
-
-
+while writeSale(readSale(readable[0]), asheet):
+    wtiretosh += Axis
+writetoshn = writeAxis(readYaxis(readable[0], asheet)
+writetosh += writetoshn
+writetoshw = writeAxis(readXAxis(readable[0], asheet)
 
 
 lsize = len(size)
