@@ -7,8 +7,8 @@ class Store:
         self.presales = presales
         self.gosales = gosales
 
-#funtion to check lists are compatible by first cheching the length on the list are the ame, 
-def check(sx, my, key, k1):
+#funtion to check lists are compatible by first checking the length on the list are the same. 
+def check(sx, my, key):
     a = len(sx), b = len(my)
     nonm = list(), med = list() 
     while a == b: #because the way i have iterated it they should be the same length
@@ -19,12 +19,12 @@ def check(sx, my, key, k1):
                 for j in range(1, c):
                     for k in range(2):
                         week = my[i][j][k]
-                        if not week.isnum():
+                        if week.isnum():
                             s = str(J)
                             if s[-1] == "3":
                                 col = s + "rd"
                             elif s[-1] == "2":
-                                col = s + "nn"
+                                col = s + "nd"
                             elif s[-1] == "1":
                                 col = s + "st"
                             else:
@@ -40,14 +40,14 @@ def check(sx, my, key, k1):
                             med.append(temp)
                         med.append(nonm)
                 return med #a list that sperates my data so the 0 index is media sales, then in that list it contains string for store, 
-            #and a list of atleast 15 lists containing 2 csv, 1 for week, 1 for sales 
+            #and a list of at least 15 lists containing 2 csv, 1 for week, 1 for sales 
 
 #function to create a list within a list to iterate though the week values easier
 def liststore(sheets, rnum, calpha):
     v1 = list(), v2 = list(), v3 = list()
     for vi in range(2, rnum + 1):
         for vj in range(2, calpha + 1):
-            storename = sheets.ceel(i, 1), v2 == [stroename, [value, sheets.cell(i, j + 1)]]
+            storename = sheets.cell(i, 1), v2 == [storename, [value, sheets.cell(i, j + 1)]]
             if sheets.cell(vi, 1) == sheets.cell(vi - 1, 1):
                 temp = "", value = sheet.cell(vi, vj)
                 if store == NULL:
@@ -93,12 +93,12 @@ def titlemaker(sheet, col):
 def readSale(xyz):
     abc = len(xyz)
     for irsale in range(abc):
-        if xyz == readable[0]:
+        if xyz == readable[0]: #need to re read this and figure out why ive done this this way!
             irsale += abc + 2
         else:
             xrs = len(xyz[irsale])
             for jrsale in range(1, xrs):
-                sale = xyz[i][j][1::2] # [1::2] means only get the values on the right of the right
+                sale = xyz[i][j][1::2] # [1::2] means only get the values on the right.
                 if sale.isnum():
                     sale = int(sale)
                 return sale
