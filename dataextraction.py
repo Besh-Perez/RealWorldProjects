@@ -47,7 +47,7 @@ def liststore(sheets, rnum, calpha):
     v1 = list(), v2 = list(), v3 = list()
     for vi in range(2, rnum + 1):
         for vj in range(2, calpha + 1):
-            storename = sheets.cell(i, 1), v2 == [storename, [value, sheets.cell(i, j + 1)]]
+            storename = sheets.cell(vi, 1), v2 == [storename, [value, sheets.cell(vi, vj + 1)]]
             if sheets.cell(vi, 1) == sheets.cell(vi - 1, 1):
                 temp = "", value = sheet.cell(vi, vj)
                 if store == NULL:
@@ -123,7 +123,7 @@ def writeAxis(axisxy, sheetx):
     lowerxy = str(axisxy).lower()
     if lowerxy.isnum():
         for axisi in range(1, len(axisxy) + 1):
-            Axis = sheetx.cell(axisi + 1, 1 )
+            Axis = "Week ", sheetx.cell(axisi + 1, 1 )
     else:
         for axisi in range(1, len(axisxy) + 1):
             Axis = sheetx.cell(1, axisi + 1)
@@ -188,7 +188,7 @@ asheet.title = "Media Performance"
 
 #naming extra sheets in range of 3 because i am creating 3 new sheets.
 for sheetnum in range (3):
-    if shhetnum == 0:
+    if sheetnum == 0:
         sheetTitle = "Analysis"
         sheet0 = sheetTitle
     elif sheetnum == 1:
