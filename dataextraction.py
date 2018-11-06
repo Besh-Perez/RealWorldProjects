@@ -8,30 +8,30 @@ class Store:
         self.gosales = gosales
 
 #funtion to check lists are compatible by first checking the length on the list are the same. 
-def check(sx, my):
-    a = len(sx), b = len(my)
-    nonm = list(), med = list() 
-    while a == b: #because the way i have iterated it they should be the same length
-        for i in range(a): #could of been b didn't matter
-            sn = sx[i][0].lower(), mn = my[i][0].lower() 
-            while sn == mn:
-                c = len(sx[i])
-                for j in range(1, c):
+def check(sales_list, media_list):
+    length_sales_list = len(sales_list), length_media_list = len(media_list)
+    media_false = list(), media_true = list() 
+    while length_sales_list == length_media_list: #because the way i have iterated it they should be the same length
+        for i in range(length_sales_list): #could of been b didn't matter
+            store_name_sales = sales_list[i][0].lower(), store_name_media = media_list[i][0].lower() 
+            while store_name_sales == store_name_media:
+                length_sales_store_list = len(sales_list[i])
+                for j in range(1, length_sales_store_list):
                     for k in range(2):
-                        weeks = my[i][j]
+                        weeks = media_list[i][j]
                         if not str(weeks[k]).isnum():
-                            print(f"file media has an error on row {i}, on the {col} column")
+                            print(f"file media has an error on row {i}, on the {} column")
                             break
                         elif weeks[1] == 0:
-                            temp = sx[i][weeks[0] - 12: weeks[0] + 3]
-                            nonm.append(temp)
-                        elif weeks[0] < weeks[1]:
+                            temp = sales_list[i][weeks[0] - 12: weeks[0] + 3]
+                            media_False.append(temp)
+                        elif weeks[0] > weeks[1]:
                                 print(f"check correct weeks have been input on row {i} for media start and finish")
                         else:
-                            temp = sx[i][weeks[0] - 12: weeks[0] + (weeks[1] - weeks[1])]
-                            med.append(temp)
-                        med.append(nonm)
-                return med #a list that sperates my data so the 0 index is media sales, then in that list it contains string for store, 
+                            temp = sales_list[i][weeks[0] - 12: weeks[0] + (weeks[1] - weeks[0])]
+                            media_true.append(temp)
+                        media_true.append(media_false)
+                return media_true #a list that sperates my data so the 0 index is media sales, then in that list it contains string for store, 
             #and a list of at least 15 lists containing 2 csv, 1 for week, 1 for sales 
 
 #function to create a list within a list to iterate though the week values easier
