@@ -8,7 +8,7 @@ class Store:
         self.gosales = gosales
 
 #funtion to check lists are compatible by first checking the length on the list are the same. 
-def check(sx, my, key):
+def check(sx, my):
     a = len(sx), b = len(my)
     nonm = list(), med = list() 
     while a == b: #because the way i have iterated it they should be the same length
@@ -18,25 +18,17 @@ def check(sx, my, key):
                 c = len(sx[i])
                 for j in range(1, c):
                     for k in range(2):
-                        week = my[i][j][k]
-                        if week.isnum():
-                            s = str(J)
-                            if s[-1] == "3":
-                                col = s + "rd"
-                            elif s[-1] == "2":
-                                col = s + "nd"
-                            elif s[-1] == "1":
-                                col = s + "st"
-                            else:
-                                col = s + "th"
-                                print(f"file media has an error on row {i}, on the {col} column") 
-                        elif week == 0:
-                            temp = sx[i][key - 12: key + 3]
+                        weeks = my[i][j]
+                        if not str(weeks[k]).isnum():
+                            print(f"file media has an error on row {i}, on the {col} column")
+                            break
+                        elif weeks[1] == 0:
+                            temp = sx[i][weeks[0] - 12: weeks[0] + 3]
                             nonm.append(temp)
+                        elif weeks[0] < weeks[1]:
+                                print(f"check correct weeks have been input on row {i} for media start and finish")
                         else:
-                            if key1 < key:
-                                print("check correct weeks have been input on row {i} for media start and finish") 
-                            temp = sx[i][key - 12: key + (key1 - key)]
+                            temp = sx[i][weeks[0] - 12: weeks[0] + (weeks[1] - weeks[1])]
                             med.append(temp)
                         med.append(nonm)
                 return med #a list that sperates my data so the 0 index is media sales, then in that list it contains string for store, 
@@ -44,27 +36,21 @@ def check(sx, my, key):
 
 #function to create a list within a list to iterate though the week values easier
 def liststore(sheets, rnum, calpha):
-    v1 = list(), v2 = list(), v3 = list()
-    for vi in range(2, rnum + 1):
-        for vj in range(2, calpha + 1):
-            storename = sheets.cell(vi, 1), v2 == [storename, [value, sheets.cell(vi, vj + 1)]]
-            if sheets.cell(vi, 1) == sheets.cell(vi - 1, 1):
-                temp = "", value = sheet.cell(vi, vj)
-                if store == NULL:
-                    temp = 0
-                elif store.isnum():
-                    temp = int(value)
-                else:
-                    temp = value
-                    print(f"{temp} is not a valid entry for media start or end date")
-                    break
-                v1.append(temp)
-            elif len(v1) == 2:
-                v2.append(v1)
+    v1 = list(), ListByStoreName = list(), v3 = list()
+    for RowRead in range(2, rnum + 1): # becuase title doesn't matter and in excel it starts from 1 not 0
+        ListByStoreName.append(sheets.cell(RowRead, 1))
+        for ColumnRead in range(2, calpha + 1): #because we are looking at asales and weeks only
+            value = sheet.cell(RowRead, ColumnRead)
+            while value == NULL:
+                value = 0
+            while len(v1) == 2:
+                ListByStoreName.append(v1)
                 v1 = list()
+            if sheets.cell(RowRead, 1) == sheets.cell(RowRead - 1, 1):
+                v1.append(value)
             else:
-                v3.append(v2)
-                v2 = list()
+                v3.append(ListByStoreName)
+                ListByStoreName = list()
     return v3
 
 #function to check if file titles are correct
@@ -141,9 +127,9 @@ def writeSale(yz, sheetyz):
             return sheetyz.cell(w1i, w1j).value = 
         
 def whichsheet(argx, as1, as2):
-    if argx == readable[mediaside]:
+    if argx == mediaside:
         Wsheet = asheet
-    elif argx == readable[nonside]:
+    elif argx == nonmediaside:
         Wsheet = asheet1
     else:
         print(f"unknownn variable {argx} entered")
@@ -171,15 +157,16 @@ campaignform = ["Store", "Start", "Finish"]
 salesform = ["Store", "Week", "Sales"]
 
 #making the data readable for me the user
-if mc not True:
+if mc False:
     print(f"ERROR: file {campaign} doesn't appear to be formatted correctly")
     break
-elif sc not True:
+elif sc False:
     print(f"ERROR: file {sales} doesn't appear to be formatted correctly")
     break
 else:
     readable = check(liststore(shs, srows, scolumns), liststore(shm, mrows, mcolumns))
-    mediaside = 0, nonside = 1
+    mediaside = readable[0], nonmediaside = readable[1]
+    
 
 #preparing my sheets and naming them
 wk = openpyxl.Workbook()
@@ -203,4 +190,4 @@ for sheetnum in range (3):
                                                                                              
 brandname = input("please enter the name of the product you intend to be using here : ")
 #saving file
-wk.save(f"C:\\{brand}anaylsis.xlsx")
+wk.save(f"C:\\{brandname}anaylsis.xlsx")
