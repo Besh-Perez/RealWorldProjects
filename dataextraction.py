@@ -76,42 +76,38 @@ def titlemaker(sheet, col):
     return cellnames
 
 #xyz & xyz1 = readable[mediaside] or readable[nonside]
-def readSale(xyz):
-    abc = len(xyz)
-    for irsale in range(abc):
-        if xyz == readable[0]: #need to re read this and figure out why ive done this this way!
-            irsale += abc + 2
-        else:
-            xrs = len(xyz[irsale])
-            for jrsale in range(1, xrs):
-                sale = xyz[i][j][1::2] # [1::2] means only get the values on the right.
-                if sale.isnum():
-                    sale = int(sale)
-                return sale
+def readSale(SaleCSV):
+    lengthCSV = len(SaleCSV)
+    for irsale in range(lengthCSV):
+        LocationSalesLength = len(SaleCSV[irsale])
+        for jrsale in range(1, LocationSaleLength):
+            sale = SaleCsv[irsale][jrsale][1::2] # [1::2] means only get the values on the right.
+            if sale.isnum():
+                sale = int(sale)
+            return sale
             
-def readYAXIS(xyz2):
-    abc2 = len(abc2)
-    for irweek in range(abc2):
-        xrw = len(xyz[irweek])
-        for jrweek in range(1, xrw):
-            yA = xyz2[irweek][jrweek][::2] # means values on left
-            return yA
+def readYAXIS(WeekRead):
+    NumStores = len(WeekRead)
+    for irweek in range(NumStores):
+        NumWeeks = len(WeekRead[irweek])
+        for jrweek in range(1, Numweeks):
+            ExtractedWeeks = WeekRead[irweek][jrweek][::2] # means values on left)
+            return ExtractedWeeks
         
- def readXAxis(xyz1):
-    abc1 = len(xyz1)
-    for iraxis in range(abc):
-        xA = xyz1[iraxis][0]
-        return xA  
+ def readXAxis(StoreNameLoc):
+    NumberStores = len(StoreNameLoc)
+    for iraxis in range(NuymberStores):
+        ExtractedStores = StoreNameLoc[iraxis][0]
+        return ExtractedStores  
 
 # this function checks the axis entry if it is numeric we know that it belongs to the x-axis/columns or else it belongs in the y-axis
 # /rows. which means i would literally go down the rows if it was the y-axis, and accross the columns if the x-axis 
-def writeAxis(axisxy, sheetx):
-    lowerxy = str(axisxy).lower()
+def writeAxis(ReadAxis, sheetx):
+    lowerxy = str(ReadAxis).lower()
+    for axisi in range(1, len(ReadAxis) + 1):
     if lowerxy.isnum():
-        for axisi in range(1, len(axisxy) + 1):
-            Axis = "Week ", sheetx.cell(axisi + 1, 1 )
+            Axis = "Week ", sheetx.cell(axisi + 1, 1)
     else:
-        for axisi in range(1, len(axisxy) + 1):
             Axis = sheetx.cell(1, axisi + 1)
     return Axis
     
@@ -119,12 +115,12 @@ def writeAxis(axisxy, sheetx):
 # the sheet im working on them im going to find the length of the lists in the data set(since it's excel we need 2 add 1 to each value
 # in the range, the first one as to not include the store name. then after the string name. each index should contain a list of size 2
 # therefore i must be consider the sytle of the data, which i intended to plot the prelaunch week
-def writeSale(yz, sheetyz):
-    zz = len(yz)
-    for w1i in range(1, zz + 1):
-        az = len(zz[w1i])
-        for w1j in range(1, az + 1):
-            return sheetyz.cell(w1i, w1j).value = 
+def writeSale(SaleRead, WriteSheet):
+    lengthStoreInSalesRead = len(SaleRead)
+    for WriteRow in range(1, LengthStoresInSalesRead + 1):
+        NumWeeksRead = len(SalesRead[WriteRow])
+        for WriteColumn in range(1, NumWeeksRead + 1):
+            return WriteSheet.cell(WriteRow, WriteColumn).value(SalesRead)
         
 def whichsheet(argx, as1, as2):
     if argx == mediaside:
