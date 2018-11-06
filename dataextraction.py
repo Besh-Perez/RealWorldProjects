@@ -101,7 +101,7 @@ def readYAXIS(WeekRead):
         return ExtractedStores  
 
 # this function checks the axis entry if it is numeric we know that it belongs to the x-axis/columns or else it belongs in the y-axis
-# /rows. which means i would literally go down the rows if it was the y-axis, and accross the columns if the x-axis 
+# rows. which means i would literally go down the rows if it was the y-axis, and accross the columns if the x-axis 
 def writeAxis(ReadAxis, sheetx):
     lowerxy = str(ReadAxis).lower()
     for axisi in range(1, len(ReadAxis) + 1):
