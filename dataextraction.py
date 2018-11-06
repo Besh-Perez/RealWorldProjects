@@ -18,7 +18,7 @@ def check(sales_list, media_list):
                 length_sales_store_list = len(sales_list[i])
                 for j in range(1, length_sales_store_list):
                     for k in range(2):
-                        weeks = media_list[i][j]
+                        weeks = media_list[i][k]
                         if not str(weeks[k]).isnum():
                             print(f"file media has an error on row {i}, on the {} column")
                             break
@@ -30,28 +30,28 @@ def check(sales_list, media_list):
                         else:
                             temp = sales_list[i][weeks[0] - 12: weeks[0] + (weeks[1] - weeks[0])]
                             media_true.append(temp)
-                        media_true.append(media_false)
-                return media_true #a list that sperates my data so the 0 index is media sales, then in that list it contains string for store, 
+                        sorted_sales_results = media_true.append(media_false)
+                return sorted_sales_results #a list that sperates my data so the 0 index is media sales, then in that list it contains string for store, 
             #and a list of at least 15 lists containing 2 csv, 1 for week, 1 for sales 
 
 #function to create a list within a list to iterate though the week values easier
-def liststore(sheets, rnum, calpha):
-    v1 = list(), ListByStoreName = list(), v3 = list()
-    for RowRead in range(2, rnum + 1): # becuase title doesn't matter and in excel it starts from 1 not 0
+def liststore(sheets, row_max_num, column_max_num):
+    numeric_values_read = list(), ListByStoreName = list(), read_results = list()
+    for RowRead in range(2, row_max_num + 1): # becuase title doesn't matter and in excel it starts from 1 not 0
         ListByStoreName.append(sheets.cell(RowRead, 1))
-        for ColumnRead in range(2, calpha + 1): #because we are looking at asales and weeks only
+        for ColumnRead in range(2, column_max_num + 1): #because we are looking at asales and weeks only
             value = sheet.cell(RowRead, ColumnRead)
             while value == NULL:
                 value = 0
-            while len(v1) == 2:
-                ListByStoreName.append(v1)
-                v1 = list()
+            while len(numeric_value_read) == 2:
+                ListByStoreName.append(numeric_values_read)
+                numeric_values_read = list()
             if sheets.cell(RowRead, 1) == sheets.cell(RowRead - 1, 1):
-                v1.append(value)
+                numeric_values_read.append(value)
             else:
-                v3.append(ListByStoreName)
+                read_results.append(ListByStoreName)
                 ListByStoreName = list()
-    return v3
+    return read_results
 
 #function to check if file titles are correct
 def correct(cellname, version):
